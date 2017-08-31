@@ -37,9 +37,9 @@ public class Two_Players extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                        bomb_Player_1++;
-                      //  if(bomb_Player_1>0){
-                       // txt_bomb_1.setText(Integer.toString(bomb_Player_1));
-                    //    }
+                        if(bomb_Player_1>0){
+                        txt_bomb_1.setText(String.valueOf(bomb_Player_1));
+                       }
                     }
                 }
         );
