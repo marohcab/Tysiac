@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Two_Players extends AppCompatActivity {
 
@@ -97,6 +98,8 @@ public class Two_Players extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 bomb_Player_1++;
                 txtBomb_1.setText(bomba);
+                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
+
             }
         }).setNegativeButton(butt2, new DialogInterface.OnClickListener() {
             @Override
