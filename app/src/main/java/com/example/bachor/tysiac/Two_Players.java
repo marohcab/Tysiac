@@ -27,8 +27,8 @@ public class Two_Players extends AppCompatActivity {
         setContentView(R.layout.activity_two__players);
         TextView points1 = (TextView) findViewById(R.id.points_1);
         TextView points2 = (TextView) findViewById(R.id.points_2);
-        TextView txt_bomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
-        TextView txt_bomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
+         txt_bomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
+         txt_bomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
         points1.setText(Integer.toString(test_int));
         points2.setText(Integer.toString(test_int));
         btnBomb_1 = (Button) findViewById(R.id.button_Bomb_1);
@@ -47,9 +47,9 @@ public class Two_Players extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                        bomb_Player_1++;
-                        if(bomb_Player_1>0){
-                        txt_bomb_1.setText(Integer.toString(bomb_Player_1));
-                       }
+                       // if(bomb_Player_1>0){
+                        txt_bomb_1.setText(String.valueOf(bomb_Player_1));
+                      // }
                     }
                 }
         );
