@@ -73,7 +73,7 @@ public class NewGame extends AppCompatActivity {
         }
     }
 
-    public void showMessage(String title, String message){
+    private void showMessage(String title, String message){
         AlertDialog.Builder builder  = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
