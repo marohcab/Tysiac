@@ -83,7 +83,7 @@ Intent intent;
     private void Start(byte gracze) {
         switch (gracze){
             case 0:
-                showMessage("Błąd", "Minimalna ilość graczy to: 2");
+                startActivity(dwoch);
                 break;
             case 1:
                 showMessage("Błąd", "Minimalna ilość graczy to: 2");
