@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class Two_Players extends AppCompatActivity {
 
     Button btnBomb_1, btnBomb_2, btnBack;
-    TextView txtPoints_1, txtPoints_2, txtBomb_1, txtBomb_2;
+    TextView txtPoints_1, txtPoints_2, txtBomb_1, txtBomb_2,txtName_1,txtName_2;
 
     /*  Zmienne tymczasowe */
     String bomba = "Bomba zużyta";
@@ -22,8 +22,8 @@ public class Two_Players extends AppCompatActivity {
     int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
     int punktyStawka = 100;
-    static int iter = 0;
-    boolean bombaClick = false;
+    String nameP1 = "Gracz 1";
+    String nameP2 = "Gracz 2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,16 @@ public class Two_Players extends AppCompatActivity {
         txtPoints_2 = (TextView) findViewById(R.id.points_2);
         txtBomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
         txtBomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
+        txtName_1 = (TextView) findViewById(R.id.text_TwoPlayers_Name1);
+        txtName_2 = (TextView) findViewById(R.id.text_TwoPlayers_Name2);
         btnBomb_1 = (Button) findViewById(R.id.button_Bomb_1);
         btnBomb_2 = (Button) findViewById(R.id.button_Bomb_2);
         btnBack = (Button) findViewById(R.id.button_TwoPlayers_Back);
         //Update Data
         txtPoints_1.setText(Integer.toString(punktyP1));
         txtPoints_2.setText(Integer.toString(punktyP2));
+        txtName_1.setText(nameP1);
+        txtName_2.setText(nameP2);
 
         Bomb_1();
         Bomb_2();
