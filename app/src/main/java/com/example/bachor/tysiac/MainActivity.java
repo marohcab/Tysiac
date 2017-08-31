@@ -1,5 +1,6 @@
 package com.example.bachor.tysiac;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnNew;
     Button btnContinue;
     Button btnLoad;
+    Intent nowaGra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnNew = (Button)findViewById(R.id.button_NewGame);
         btnContinue = (Button)findViewById(R.id.button_ContinueGame);
         btnLoad = (Button)findViewById(R.id.button_LoadGame);
-
+        nowaGra = new Intent(getApplicationContext(), NewGame.class);
         New();
         Continue();
         Load();
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        startActivity(nowaGra);
                     }
                 }
         );
