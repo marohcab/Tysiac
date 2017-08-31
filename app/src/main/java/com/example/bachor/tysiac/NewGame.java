@@ -1,6 +1,7 @@
 package com.example.bachor.tysiac;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ public class NewGame extends AppCompatActivity {
     Button btnStart, btnBack;
 
     EditText nazwaG1, nazwaG2, nazwaG3, nazwaG4;
+
+
 
 
     @Override

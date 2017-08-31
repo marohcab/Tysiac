@@ -14,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Dane.db";
     public static final String TABLE_NAME = "dane_table";
+    public static final String TABLE_NAME2 = "current_table";  //która była ostatnia gra z całej listy
     public static final String COL_1 = "ID";
     public static final String COL_2 = "DATA";
     public static final String COL_3 = "ILOSC";
@@ -43,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME + "   (ID INTEGER PRIMARY KEY AUTOINCREMENT, DATA TEXT, ILOSC INTEGER, RUNDA INTEGER, KOLEJ TEXT, NAZWA_GRACZ1 TEKST, PUNKTY_GRACZ1 INTEGER, NAZWA_GRACZ2 TEXT, PUNKTY_GRACZ2 INTEGER, NAZWA_GRACZ3 TEXT, PUNKTY_GRACZ3 INTEGER, NAZWA_GRACZ4 TEXT, PUNKTY_GRACZ4 INTEGER, BOMBA_GRACZ1 INTEGER, BOMBA_GRACZ2 INTEGER, BOMBA_GRACZ3 INTEGER, BOMBA_GRACZ4 INTEGER)");
+        db.execSQL("create table " + TABLE_NAME2 + "   (ID INTEGER PRIMARY KEY AUTOINCREMENT");
     }
 
     @Override
