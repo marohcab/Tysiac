@@ -60,9 +60,9 @@ public class NewGame extends AppCompatActivity {
             case 0:
             {showMessage("Błąd", "Minimalna ilość graczy  to1233 21: 2");}
             case 1:
-            {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
+            {showMessage("Błąd", "Minimalna ilość graczy sdfsdfto: 2");}
             case 2:
-            {{showMessage("Błąd", "Minimalna ilość graczy to: 2");}
+            {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
             case 3:
             {}
             case 4:
