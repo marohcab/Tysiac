@@ -113,4 +113,14 @@ Intent intent;
         builder.setMessage(message);
         builder.show();
     }
+
+    private void showMessage2(String message, String butt1, String butt2) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message).setPositiveButton(butt1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+    }
 }
