@@ -58,7 +58,7 @@ public class NewGame extends AppCompatActivity {
     private void Start(byte gracze) {
         switch (gracze){
             case 0:
-            {showMessage("Błąd", "Minimalna ilość graczy  to123321: 2");}
+            {showMessage("Błąd", "Minimalna ilość graczy  to1233 21: 2");}
             case 1:
             {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
             case 2:
