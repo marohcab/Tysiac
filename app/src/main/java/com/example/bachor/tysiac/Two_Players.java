@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Two_Players extends AppCompatActivity {
@@ -15,6 +16,10 @@ public class Two_Players extends AppCompatActivity {
     int test_int = 1;
     int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
+    Button btnTest;
+    EditText edit_test;
+    TextView txt_test;
+    int dupa2=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +33,12 @@ public class Two_Players extends AppCompatActivity {
         points2.setText(Integer.toString(test_int));
         btnBomb_1 = (Button) findViewById(R.id.button_Bomb_1);
         btnBomb_2 = (Button) findViewById(R.id.button_Bomb_2);
+        btnTest = (Button)findViewById(R.id.button_test);
+        txt_test = (TextView)findViewById(R.id.text_test);
+        edit_test = (EditText)findViewById(R.id.editText_test);
         Bomb_1();
         Bomb_2();
+        dupa();
     }
 
     private void Bomb_1() {
@@ -55,6 +64,17 @@ public class Two_Players extends AppCompatActivity {
                             txt_bomb_2.setText(Integer.toString(bomb_Player_2));
 
                         }
+                    }
+                }
+        );
+    }
+    private void dupa(){
+        btnTest.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dupa2++;
+                        txt_test.setText(String.valueOf(dupa2));
                     }
                 }
         );
