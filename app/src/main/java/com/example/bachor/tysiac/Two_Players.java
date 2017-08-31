@@ -6,14 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Two_Players extends AppCompatActivity {
 
     Button btnBomb_1, btnBomb_2, btnBack;
-    TextView txtPoints_1, txtPoints_2, txtBomb_1, txtBomb_2,txtName_1,txtName_2;
+    TextView txtPoints_1, txtPoints_2, txtBomb_1, txtBomb_2,txtName_1,txtName_2,txtLicytacja,txtRunda;
 
     /*  Zmienne tymczasowe */
     String bomba = "Bomba zużyta";
@@ -22,6 +21,7 @@ public class Two_Players extends AppCompatActivity {
     int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
     int punktyStawka = 100;
+    int runda = 0;
     String nameP1 = "Gracz 1";
     String nameP2 = "Gracz 2";
 
@@ -30,20 +30,24 @@ public class Two_Players extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two__players);
         //Declaration
-        txtPoints_1 = (TextView) findViewById(R.id.points_1);
-        txtPoints_2 = (TextView) findViewById(R.id.points_2);
-        txtBomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
-        txtBomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
+        txtPoints_1 = (TextView) findViewById(R.id.text_TwoPlayers_Points1);
+        txtPoints_2 = (TextView) findViewById(R.id.text_TwoPlayers_Points2);
+        txtBomb_1 = (TextView) findViewById(R.id.text_TwoPlayers_Bomb1);
+        txtBomb_2 = (TextView) findViewById(R.id.text_TwoPlayers_Bomb2);
         txtName_1 = (TextView) findViewById(R.id.text_TwoPlayers_Name1);
         txtName_2 = (TextView) findViewById(R.id.text_TwoPlayers_Name2);
-        btnBomb_1 = (Button) findViewById(R.id.button_Bomb_1);
-        btnBomb_2 = (Button) findViewById(R.id.button_Bomb_2);
+        txtLicytacja = (TextView) findViewById(R.id.text_TwoPlayers_Licytacja);
+        txtRunda = (TextView) findViewById(R.id.text_TwoPlayers_Runda);
+        btnBomb_1 = (Button) findViewById(R.id.button_TwoPlayers_Bomb1);
+        btnBomb_2 = (Button) findViewById(R.id.button_TwoPlayers_Bomb2);
         btnBack = (Button) findViewById(R.id.button_TwoPlayers_Back);
         //Update Data
         txtPoints_1.setText(Integer.toString(punktyP1));
         txtPoints_2.setText(Integer.toString(punktyP2));
         txtName_1.setText(nameP1);
         txtName_2.setText(nameP2);
+        txtLicytacja.setText(Integer.toString(punktyStawka));
+        txtRunda.setText(Integer.toString(runda));
 
         Bomb_1();
         Bomb_2();
