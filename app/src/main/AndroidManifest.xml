@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewGame" />
-        <activity android:name=".Two_Players"></activity>
+        <activity android:name=".Two_Players" />
+        <activity android:name=".ThreePlayers"></activity>
     </application>
 
 </manifest>

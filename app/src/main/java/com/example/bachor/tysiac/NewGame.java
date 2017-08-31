@@ -11,11 +11,13 @@ import android.widget.EditText;
 
 public class NewGame extends AppCompatActivity {
 
-    Button btnStart, btnBack;
+    Button btnStart, btnBack, button234;
 
     EditText nazwaG1, nazwaG2, nazwaG3, nazwaG4;
 
 
+Intent intent;
+    Intent czterach;
 
 
     @Override
@@ -28,20 +30,28 @@ public class NewGame extends AppCompatActivity {
         nazwaG4 = (EditText)findViewById(R.id.edit_NazwaGracz4);
         btnStart = (Button)findViewById(R.id.button_Start);
         btnBack = (Button)findViewById(R.id.button_Back);
+       // gracze2 = new Intent(this), Two_Players.class);
         Back();
+        pressStart();
+        czterach = new Intent(this, Two_Players.class);
+
+
     }
+
+
 
     private byte iluGraczy() {
         byte wynik=0;
 
-            if(nazwaG1.getText().toString()!="")
+            if(nazwaG1.length()!=0)
                 wynik++;
-            if(nazwaG2.getText().toString()!="")
+            if(nazwaG2.length()!=0)
                 wynik++;
-            if(nazwaG3.getText().toString()!="")
+            if(nazwaG3.length()!=0)
                 wynik++;
-            if(nazwaG4.getText().toString()!="")
+            if(nazwaG4.length()!=0)
                 wynik++;
+
 
         return wynik;
 
@@ -71,19 +81,28 @@ public class NewGame extends AppCompatActivity {
     private void Start(byte gracze) {
         switch (gracze){
             case 0:
-            {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
+                showMessage("Błąd", "Minimalna ilość graczy to: 0");
+                break;
             case 1:
-            {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
+                showMessage("Błąd", "Minimalna ilość graczy to: 1");
+                break;
             case 2:
-            {}
+                startActivity(czterach);
+                break;
             case 3:
-            {}
+                showMessage("Błąd", "Minimalna ilość graczy to: 3");
+                break;
             case 4:
-            {}
+                //showMessage("Błąd", "Minimalna ilość graczy to: 4");
+                startActivity(czterach);
+                break;
             default:
-            {}
+            showMessage("Błąd", "Cholera wie jaki");
 
         }
+
+
+
     }
 
     private void showMessage(String title, String message){
