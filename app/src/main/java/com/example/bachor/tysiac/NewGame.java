@@ -62,7 +62,7 @@ public class NewGame extends AppCompatActivity {
             case 1:
             {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
             case 2:
-            {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
+            {}
             case 3:
             {}
             case 4:
@@ -73,7 +73,7 @@ public class NewGame extends AppCompatActivity {
         }
     }
 
-    public void showMessage(String title, String message){
+    private void showMessage(String title, String message){
         AlertDialog.Builder builder  = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
