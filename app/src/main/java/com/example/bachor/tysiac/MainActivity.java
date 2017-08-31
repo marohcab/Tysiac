@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnContinue;
     Button btnLoad;
     Intent nowaGra;
+    Intent players_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
