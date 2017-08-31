@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".NewGame" />
         <activity android:name=".Two_Players" />
-        <activity android:name=".ThreePlayers"></activity>
+        <activity android:name=".ThreePlayers" />
+        <activity android:name=".FourPlayers"></activity>
     </application>
 
 </manifest>

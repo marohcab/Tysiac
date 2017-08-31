@@ -17,7 +17,7 @@ public class NewGame extends AppCompatActivity {
 
 
 Intent intent;
-    Intent czterech;
+    Intent czterech, trzech, dwoch;
 
 
     @Override
@@ -33,7 +33,9 @@ Intent intent;
        // gracze2 = new Intent(this), Two_Players.class);
         Back();
         pressStart();
-        czterech = new Intent(this, Two_Players.class);
+        dwoch = new Intent(this, Two_Players.class);
+        trzech = new Intent(this, ThreePlayers.class);
+        czterech = new Intent(this, FourPlayers.class);
 
 
     }
@@ -81,19 +83,18 @@ Intent intent;
     private void Start(byte gracze) {
         switch (gracze){
             case 0:
-                showMessage("Błąd", "Minimalna ilość graczy to: 0");
+                showMessage("Błąd", "Minimalna ilość graczy to: 2");
                 break;
             case 1:
-                showMessage("Błąd", "Minimalna ilość graczy to: 1");
+                showMessage("Błąd", "Minimalna ilość graczy to: 2");
                 break;
             case 2:
-                startActivity(czterech);
+                startActivity(dwoch);
                 break;
             case 3:
-                showMessage("Błąd", "Minimalna ilość graczy to: 3");
+                startActivity(trzech);
                 break;
             case 4:
-                //showMessage("Błąd", "Minimalna ilość graczy to: 4");
                 startActivity(czterech);
                 break;
             default:

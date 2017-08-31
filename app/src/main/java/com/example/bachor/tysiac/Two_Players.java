@@ -13,7 +13,7 @@ public class Two_Players extends AppCompatActivity {
     TextView points_1,points_2,txt_bomb_1,txt_bomb_2;
     String test_string = "test";
     int test_int = 1;
-    static int bomb_Player_1 = 0;
+    int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
 
     @Override
