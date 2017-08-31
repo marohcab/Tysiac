@@ -22,6 +22,8 @@ public class Two_Players extends AppCompatActivity {
     int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
     int punktyStawka = 100;
+    static int iter = 0;
+    boolean bombaClick = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +51,11 @@ public class Two_Players extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      /* bomb_Player_1++;
-
-                        txtBomb_1.setText(bomba);
-                        if(bomb_Player_1>1){
-                        punktyP1-=punktyStawka;
-                        txtPoints_1.setText(Integer.toString(punktyP1));
-                        */
-                        showMessage2("Czy na pewno chcesz użyć bomby?", "Yup!", "Nope!");
-
+                        showMessageP1("Czy na pewno chcesz użyć bomby?", "Yup!", "Nope!");
                     }
                 }
         );
+
 
     }
 
@@ -69,14 +64,10 @@ public class Two_Players extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        bomb_Player_2++;
-                        txtBomb_2.setText(bomba);
-                        if (bomb_Player_2 > 1) {
-                            punktyP2 -= punktyStawka;
-                            txtPoints_2.setText(Integer.toString(punktyP2));
+                        showMessageP2("Czy na pewno chcesz użyć bomby?", "Yup!", "Nope!");
                         }
                     }
-                }
+
         );
     }
 
@@ -91,20 +82,42 @@ public class Two_Players extends AppCompatActivity {
         );
     }
 
-    private void showMessage2(String message, String butt1, String butt2) {
+    private void showMessageP1(String message, String butt1, String butt2) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message).setPositiveButton(butt1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
                 bomb_Player_1++;
                 txtBomb_1.setText(bomba);
-                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
-
+                if (bomb_Player_1 > 1) {
+                    punktyP1 -= punktyStawka;
+                    txtPoints_1.setText(Integer.toString(punktyP1));
+                }
             }
         }).setNegativeButton(butt2, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+            }
+        });
+        builder.show();
+    }
+    private void showMessageP2(String message, String butt1, String butt2) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message).setPositiveButton(butt1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
+                bomb_Player_2++;
+                txtBomb_2.setText(bomba);
+                if (bomb_Player_2 > 1) {
+                    punktyP2 -= punktyStawka;
+                    txtPoints_2.setText(Integer.toString(punktyP2));
+                }
+            }
+        }).setNegativeButton(butt2, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
         builder.show();
