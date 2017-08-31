@@ -16,10 +16,9 @@ public class Two_Players extends AppCompatActivity {
     int test_int = 1;
     int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
-    Button btnTest;
-    EditText edit_test;
-    TextView txt_test;
-    int dupa2=0;
+    Button btnBack;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +26,13 @@ public class Two_Players extends AppCompatActivity {
         setContentView(R.layout.activity_two__players);
         TextView points1 = (TextView) findViewById(R.id.points_1);
         TextView points2 = (TextView) findViewById(R.id.points_2);
-         txt_bomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
-         txt_bomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
+        txt_bomb_1 = (TextView) findViewById(R.id.text_Bomb_1);
+        txt_bomb_2 = (TextView) findViewById(R.id.text_Bomb_2);
         points1.setText(Integer.toString(test_int));
         points2.setText(Integer.toString(test_int));
         btnBomb_1 = (Button) findViewById(R.id.button_Bomb_1);
         btnBomb_2 = (Button) findViewById(R.id.button_Bomb_2);
-        btnTest = (Button)findViewById(R.id.button_test);
-        txt_test = (TextView)findViewById(R.id.text_test);
-        edit_test = (EditText)findViewById(R.id.editText_test);
+        btnBack = (Button)findViewById(R.id.button_TwoPlayers_Back);
         Bomb_1();
         Bomb_2();
         dupa();
@@ -69,12 +66,11 @@ public class Two_Players extends AppCompatActivity {
         );
     }
     private void dupa(){
-        btnTest.setOnClickListener(
+        btnBack.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        dupa2++;
-                        txt_test.setText(String.valueOf(dupa2));
+                        finish();
                     }
                 }
         );
