@@ -87,7 +87,7 @@ public class Two_Players extends AppCompatActivity {
         builder.setMessage(message).setPositiveButton(butt1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Two_Players.this, "BOOOOOM!", Toast.LENGTH_LONG).show();
                 bomb_Player_1++;
                 txtBomb_1.setText(bomba);
                 if (bomb_Player_1 > 1) {
@@ -107,7 +107,7 @@ public class Two_Players extends AppCompatActivity {
         builder.setMessage(message).setPositiveButton(butt1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(Two_Players.this, "BOOOOM!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Two_Players.this, "BOOOOOM!", Toast.LENGTH_LONG).show();
                 bomb_Player_2++;
                 txtBomb_2.setText(bomba);
                 if (bomb_Player_2 > 1) {
