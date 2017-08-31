@@ -13,7 +13,7 @@ public class Two_Players extends AppCompatActivity {
     TextView points_1,points_2,txt_bomb_1,txt_bomb_2;
     String test_string = "test";
     int test_int = 1;
-    static int bomb_Player_1 = 0;
+    int bomb_Player_1 = 0;
     int bomb_Player_2 = 0;
 
     @Override
@@ -29,6 +29,7 @@ public class Two_Players extends AppCompatActivity {
         bomb_1 = (Button) findViewById(R.id.button_Bomb_1);
         bomb_2 = (Button) findViewById(R.id.button_Bomb_2);
         Bomb_1();
+        Bomb_2();
     }
 
     private void Bomb_1() {
@@ -38,7 +39,7 @@ public class Two_Players extends AppCompatActivity {
                     public void onClick(View view) {
                        bomb_Player_1++;
                         if(bomb_Player_1>0){
-                        txt_bomb_1.setText(String.valueOf(bomb_Player_1));
+                        txt_bomb_1.setText(Integer.toString(bomb_Player_1));
                        }
                     }
                 }
@@ -50,7 +51,8 @@ public class Two_Players extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         bomb_Player_2++;
-                        if(bomb_Player_2==1){
+                        if(bomb_Player_2>0){
+                            txt_bomb_2.setText(Integer.toString(bomb_Player_2));
 
                         }
                     }
