@@ -25,7 +25,7 @@ public class NewGame extends AppCompatActivity {
         nazwaG4 = (EditText)findViewById(R.id.edit_NazwaGracz4);
         btnStart = (Button)findViewById(R.id.button_Start);
         btnBack = (Button)findViewById(R.id.button_Back);
-
+        Back();
     }
 
     private byte iluGraczy() {
@@ -50,6 +50,16 @@ public class NewGame extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Start(iluGraczy());
+                    }
+                }
+        );
+    }
+    private void Back() {
+        btnBack.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
                     }
                 }
         );
