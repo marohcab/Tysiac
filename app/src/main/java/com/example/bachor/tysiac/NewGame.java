@@ -28,16 +28,18 @@ public class NewGame extends AppCompatActivity {
 
     }
 
-    private int iluGraczy() {
-        int wynik=0;
-        if(nazwaG1.getText().toString()!="")
-            wynik++;
-        if(nazwaG2.getText().toString()!="")
-            wynik++;
-        if(nazwaG3.getText().toString()!="")
-            wynik++;
-        if(nazwaG4.getText().toString()!="")
-            wynik++;
+    private byte iluGraczy() {
+        byte wynik=0;
+
+            if(nazwaG1.getText().toString()!="")
+                wynik++;
+            if(nazwaG2.getText().toString()!="")
+                wynik++;
+            if(nazwaG3.getText().toString()!="")
+                wynik++;
+            if(nazwaG4.getText().toString()!="")
+                wynik++;
+
         return wynik;
 
     }
@@ -53,7 +55,7 @@ public class NewGame extends AppCompatActivity {
         );
     }
 
-    private void Start(int gracze) {
+    private void Start(byte gracze) {
         switch (gracze){
             case 1:
             {showMessage("Błąd", "Minimalna ilość graczy to: 2");}
