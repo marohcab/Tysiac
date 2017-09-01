@@ -127,20 +127,36 @@ public class DataBase extends SQLiteOpenHelper {
 
     //settery dla kazdej danej
 
-    public void setRunda(){
-
+    public void setRunda(int runda){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(RUNDA, runda);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
-    public void setZaczyna(){
-
+    public void setZaczyna(String zaczyna){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ1_PUNKTY, zaczyna);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
-    public void setRozdaje(){
-
+    public void setRozdaje(String rozdaje){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ1_PUNKTY, rozdaje);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
-    public void setGracz1Punkty(){
-
+    public void setGracz1Punkty(int punkty){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ1_PUNKTY, punkty);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
     public void setGracz1Bomba(boolean bomba){
@@ -156,11 +172,14 @@ public class DataBase extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(GRACZ1_BOMBA, bomba2);
         db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
-
     }
 
-    public void setGracz2Punkty(){
-
+    public void setGracz2Punkty(int punkty){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ2_PUNKTY, punkty);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
     public void setGracz2Bomba(boolean bomba){
@@ -179,8 +198,12 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz3Punkty(){
-
+    public void setGracz3Punkty(int punkty){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ3_PUNKTY, punkty);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
     public void setGracz3Bomba(boolean bomba){
@@ -199,8 +222,12 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz4Punkty(){
-
+    public void setGracz4Punkty(int punkty){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String id=String.valueOf(getCurrent());
+        contentValues.put(GRACZ4_PUNKTY, punkty);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
     }
 
     public void setGracz4Bomba(boolean bomba){
