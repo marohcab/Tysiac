@@ -1,10 +1,14 @@
 package com.example.bachor.tysiac;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 /**
  * Created by Bachor on 2017-09-01.
  */
 
-public class DataBase {
+public class DataBase extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Data.db";
 
     /*
@@ -45,4 +49,28 @@ public class DataBase {
 
     public static final String TABLE_CURRENT = "Current";
     public static final String CURRENT = "ID";
+
+    /*
+
+
+
+
+     */
+
+
+    public DataBase(Context context) {
+        super(context, DATABASE_NAME, null, 1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table " + TABLE_CURRENT + "  (ID)");
+        db.execSQL("create table " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
+        onCreate(db);
+    }
 }
