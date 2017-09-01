@@ -92,6 +92,7 @@ public class DataBase extends SQLiteOpenHelper {
         Cursor getID;
         getID = db.rawQuery("select count(ID) from TABLE", null);
         id = getID.getInt(0) + 1;
+
         contentValues.put(ID, id);
         contentValues.put(GRACZE, gracze);
         contentValues.put(DATA, data);
