@@ -1,5 +1,6 @@
 package com.example.bachor.tysiac;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -73,5 +74,26 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
         onCreate(db);
     }
+
+    //Dodawanie nowych danych (wierszy)
+    public boolean insertData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    //settery dla kazdej danej
+
+    //gettery dla kazdej danej
+
+    //usuwanie jednego wiersza
+
+    //usuwanie całości
+
 
 }
