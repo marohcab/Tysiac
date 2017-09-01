@@ -2,6 +2,7 @@ package com.example.bachor.tysiac;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -20,7 +21,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     public static final String TABLE_NAME = "GameData";
     public static final String ID = "ID";
-    public static final String ILOSC = "Gracze";
+    public static final String GRACZE = "Gracze";
     public static final String DATA = "Data";
     public static final String RUNDA = "Runda";
     public static final String ZACZYNA = "Zaczyna";
@@ -66,7 +67,11 @@ public class DataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table if not exists " + TABLE_CURRENT + "  (ID)");
-        db.execSQL("create table if not exists " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
+        db.execSQL("create table if not exists " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, " +
+                "Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, " +
+                "Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, " +
+                "Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, " +
+                "Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
     }
 
     @Override
@@ -76,9 +81,40 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     //Dodawanie nowych danych (wierszy)
-    public boolean insertData() {
+    public boolean insertData(int gracze, String data, int runda, String zaczyna, String rozdaje,
+                              String gracz1nazwa, int gracz1punkty, int gracz1bomba,
+                              String gracz2nazwa, int gracz2punkty, int gracz2bomba,
+                              String gracz3nazwa, int gracz3punkty, int gracz3bomba,
+                              String gracz4nazwa, int gracz4punkty, int gracz4bomba) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        int id;
+        Cursor getID;
+        getID = db.rawQuery("select count(ID) from TABLE", null);
+        id = getID.getInt(0) + 1;
+        contentValues.put(ID, id);
+        contentValues.put(GRACZE, gracze);
+        contentValues.put(DATA, data);
+        contentValues.put(RUNDA, runda);
+        contentValues.put(ZACZYNA, zaczyna);
+        contentValues.put(ROZDAJE, rozdaje);
+
+        contentValues.put(GRACZ1_NAZWA, gracz1nazwa);
+        contentValues.put(GRACZ1_PUNKTY, gracz1punkty);
+        contentValues.put(GRACZ1_BOMBA, gracz1bomba);
+
+        contentValues.put(GRACZ2_NAZWA, gracz2nazwa);
+        contentValues.put(GRACZ2_PUNKTY, gracz2punkty);
+        contentValues.put(GRACZ2_BOMBA, gracz2bomba);
+
+        contentValues.put(GRACZ3_NAZWA, gracz3nazwa);
+        contentValues.put(GRACZ3_PUNKTY, gracz3punkty);
+        contentValues.put(GRACZ3_BOMBA, gracz3bomba);
+
+        contentValues.put(GRACZ4_NAZWA, gracz4nazwa);
+        contentValues.put(GRACZ4_PUNKTY, gracz4punkty);
+        contentValues.put(GRACZ4_BOMBA, gracz4bomba);
+
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1)
@@ -89,7 +125,202 @@ public class DataBase extends SQLiteOpenHelper {
 
     //settery dla kazdej danej
 
+    public void setRunda(){
+
+    }
+
+    public void setZaczyna(){
+
+    }
+
+    public void setRozdaje(){
+
+    }
+
+    public void setGracz1Punkty(){
+
+    }
+
+    public void setGracz1Bomba(){
+
+    }
+
+    public void setGracz2Punkty(){
+
+    }
+
+    public void setGracz2Bomba(){
+
+    }
+
+    public void setGracz3Punkty(){
+
+    }
+
+    public void setGracz3Bomba(){
+
+    }
+
+    public void setGracz4Punkty(){
+
+    }
+
+    public void setGracz4Bomba(){
+
+    }
+
+    public void setCurrent(int id){
+
+    }
+
     //gettery dla kazdej danej
+
+    public String getGracz1Nazwa(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + GRACZ1_NAZWA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public int getGracz1Punkty(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ1_PUNKTY + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        return get.getInt(0);
+    }
+
+    public boolean getGracz1Bomba(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ1_BOMBA + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        if(get.getInt(0)!=0)
+            return false;
+        else
+            return true;
+    }
+
+    public String getGracz2Nazwa(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + GRACZ2_NAZWA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public int getGracz2Punkty(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ2_PUNKTY + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        return get.getInt(0);
+    }
+
+    public boolean getGracz2Bomba(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ1_BOMBA + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        if(get.getInt(0)!=0)
+            return false;
+        else
+            return true;
+    }
+
+    public String getGracz3Nazwa(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + GRACZ3_NAZWA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public int getGracz3Punkty(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ3_PUNKTY + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        return get.getInt(0);
+    }
+
+    public boolean getGracz3Bomba(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ1_BOMBA + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        if(get.getInt(0)!=0)
+            return false;
+        else
+            return true;
+    }
+
+    public String getGracz4Nazwa(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + GRACZ4_NAZWA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public int getGracz4Punkty(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ4_PUNKTY + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        return get.getInt(0);
+    }
+
+    public boolean getGracz4Bomba(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + GRACZ1_BOMBA + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        if(get.getInt(0)!=0)
+            return false;
+        else
+            return true;
+    }
+
+    public int getRunda(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get = db.rawQuery("select " + RUNDA + " from " + TABLE_NAME + " where " + ID + "=" + id,null);
+        get.moveToFirst();
+        return get.getInt(0);
+    }
+
+    public String getZaczyna(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + ZACZYNA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public String getRozdaje(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + ROZDAJE + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public String getData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int id = getCurrent();
+        Cursor get =  db.rawQuery("select " + DATA + " from " + TABLE_NAME + " where " + ID + "=" + id, null);
+        get.moveToFirst();
+        return get.toString();
+    }
+
+    public int getCurrent(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor getID = db.rawQuery("select " + CURRENT + " from " + TABLE_CURRENT, null);
+        return getID.getInt(0);
+    }
+
 
     //usuwanie jednego wiersza
 
