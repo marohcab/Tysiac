@@ -64,8 +64,8 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_CURRENT + "  (ID)");
-        db.execSQL("create table " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
+        db.execSQL("create table if not exists " + TABLE_CURRENT + "  (ID)");
+        db.execSQL("create table if not exists " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
     }
 
     @Override
@@ -73,4 +73,5 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
         onCreate(db);
     }
+
 }
