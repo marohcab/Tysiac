@@ -50,7 +50,8 @@ public class DataBase extends SQLiteOpenHelper {
      */
 
     public static final String TABLE_CURRENT = "Current";
-    public static final String CURRENT = "ID";
+    public static final String CURRENT = "GRA";
+    public static final String CURRENTID = "ID";
 
     /*
 
@@ -66,7 +67,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists " + TABLE_CURRENT + "  (ID)");
+        db.execSQL("create table if not exists " + TABLE_CURRENT + "  (ID INTEGER PRIMARY KEY, GRA INTEGER)");
         db.execSQL("create table if not exists " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, " +
                 "Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, " +
                 "Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, " +
@@ -142,7 +143,19 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz1Bomba(){
+    public void setGracz1Bomba(boolean bomba){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int bomba2;
+        if(bomba==true){
+            bomba2=1;
+        }
+        else{
+            bomba2=0;
+        }
+        String id=String.valueOf(getCurrent());
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(GRACZ1_BOMBA, bomba2);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
 
     }
 
@@ -150,7 +163,19 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz2Bomba(){
+    public void setGracz2Bomba(boolean bomba){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int bomba2;
+        if(bomba==true){
+            bomba2=1;
+        }
+        else{
+            bomba2=0;
+        }
+        String id=String.valueOf(getCurrent());
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(GRACZ2_BOMBA, bomba2);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
 
     }
 
@@ -158,7 +183,19 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz3Bomba(){
+    public void setGracz3Bomba(boolean bomba){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int bomba2;
+        if(bomba==true){
+            bomba2=1;
+        }
+        else{
+            bomba2=0;
+        }
+        String id=String.valueOf(getCurrent());
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(GRACZ3_BOMBA, bomba2);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
 
     }
 
@@ -166,15 +203,37 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public void setGracz4Bomba(){
+    public void setGracz4Bomba(boolean bomba){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int bomba2;
+            if(bomba==true){
+                bomba2=1;
+            }
+            else{
+              bomba2=0;
+            }
+        String id=String.valueOf(getCurrent());
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(GRACZ4_BOMBA, bomba2);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
 
     }
 
     public void setCurrent(int id){
-
+        SQLiteDatabase db = this.getWritableDatabase();
+        //String id2 ="1";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CURRENT, id);
+        db.update(TABLE_CURRENT, contentValues, "ID = ?", new String[]{"1"});
     }
 
+    //
+    //
+    //
     //gettery dla kazdej danej
+    //
+    //
+    //
 
     public String getGracz1Nazwa(){
         SQLiteDatabase db = this.getWritableDatabase();
