@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 /**
  * Created by Bachor on 2017-08-31.
@@ -37,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -56,7 +57,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertData(String data, int ilosc, int runda, String kolej, String nazwa_gracz1, int punkty_gracz1, String nazwa_gracz2, int punkty_gracz2, String nazwa_gracz3, int punkty_gracz3, String nazwa_gracz4, int punkty_gracz4, int bomba_gracz1, int bomba_gracz2, int bomba_gracz3, int bomba_gracz4){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, data);
+        Cursor getID;
+        getID = db.rawQuery("select count(*) from "+TABLE_NAME, null);
+        getID.moveToFirst();
+        int id = getID.getInt(0)+1;
+        String dupa = String.valueOf(id);
+        //Toast.makeText(DatabaseHelper.this, dupa, Toast.LENGTH_LONG).show();
+        contentValues.put(COL_2, dupa);
         contentValues.put(COL_3, ilosc);
         contentValues.put(COL_4, runda);
         contentValues.put(COL_5, kolej);

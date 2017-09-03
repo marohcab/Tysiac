@@ -13,11 +13,14 @@ import android.widget.Toast;
 public class NewGame extends AppCompatActivity {
 
     Button btnStart, btnBack;
-    EditText nazwaG1, nazwaG2, nazwaG3, nazwaG4;
+    EditText editG1, editG2, editG3, editG4;
     DatabaseHelper myDb;
     Intent czterech, trzech, dwoch;
     byte ile=0,g1u=0,g2u=0,g3u=0,g4u=0;
-    String gracz1, gracz2, gracz3, gracz4;
+    public String gracz1, gracz2, gracz3, gracz4;
+    DataBase dane;
+    String[] nazwaGracza;
+    EditText[] editGracze;
 
 
     @Override
@@ -25,18 +28,23 @@ public class NewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
         myDb = new DatabaseHelper(this);
+        dane = new DataBase(this);
+        nazwaGracza = new String[4];
 
-        nazwaG1 = (EditText)findViewById(R.id.edit_NazwaGracz1);
-        nazwaG2 = (EditText)findViewById(R.id.edit_NazwaGracz2);
-        nazwaG3 = (EditText)findViewById(R.id.edit_NazwaGracz3);
-        nazwaG4 = (EditText)findViewById(R.id.edit_NazwaGracz4);
+        editG1 = (EditText)findViewById(R.id.edit_NazwaGracz1);
+        editG2 = (EditText)findViewById(R.id.edit_NazwaGracz2);
+        editG3 = (EditText)findViewById(R.id.edit_NazwaGracz3);
+        editG4 = (EditText)findViewById(R.id.edit_NazwaGracz4);
 
         btnStart = (Button)findViewById(R.id.button_Start);
         btnBack = (Button)findViewById(R.id.button_Back);
 
-        dwoch = new Intent(this, Two_Players.class);
-        trzech = new Intent(this, ThreePlayers.class);
-        czterech = new Intent(this, FourPlayers.class);
+        dwoch = new Intent();
+        dwoch.setClass(getApplicationContext(), Two_Players.class);
+        trzech = new Intent();
+        trzech.setClass(getApplicationContext(), ThreePlayers.class);
+        czterech = new Intent();
+        czterech.setClass(getApplicationContext(), FourPlayers.class);
 
         Back();
         pressStart();
@@ -44,33 +52,17 @@ public class NewGame extends AppCompatActivity {
 
 
 
-    private byte iluGraczy() {
-        byte wynik=0;
-
-            if(nazwaG1.length()!=0)
-                wynik++;
-            if(nazwaG2.length()!=0)
-                wynik++;
-            if(nazwaG3.length()!=0)
-                wynik++;
-            if(nazwaG4.length()!=0)
-                wynik++;
-
-
-        return wynik;
-
-    }
-
     private void pressStart(){
         btnStart.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Start(iluGraczy());
+                        Start();
                     }
                 }
         );
     }
+
     private void Back() {
         btnBack.setOnClickListener(
                 new View.OnClickListener() {
@@ -82,249 +74,72 @@ public class NewGame extends AppCompatActivity {
         );
     }
 
-    private void Start(byte gracze) {
-        switch (gracze){
-            case 0:
-                startActivity(dwoch);
-                break;
-            case 1:
-                showMessage("Błąd", "Minimalna ilość graczy to: 2");
-                break;
-            case 2:
-                while(ile==0){
-                    if(nazwaG1.length()!=0){
-                        gracz1=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=1;
-                    }
-                    if(nazwaG2.length()!=0){
-                        gracz1=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=1;
-                    }
-                    if(nazwaG3.length()!=0){
-                        gracz1=nazwaG3.getText().toString();
-                        g2u=1;
-                        ile=1;
-                    }
-                    if(nazwaG4.length()!=0){
-                        gracz1=nazwaG4.getText().toString();
-                        g2u=1;
-                        ile=1;
-                    }
-                }
-                while (ile == 1) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz2=nazwaG1.getText().toString();
-                        ile=2;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz2=nazwaG2.getText().toString();
-                        ile=2;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz2=nazwaG3.getText().toString();
-                        ile=2;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz2=nazwaG4.getText().toString();
-                        ile=2;
-                    }
-                }
-                boolean isInserted = myDb.insertData("",0,0,"",gracz1,0,gracz2,0,"",0,"",0,0,0,0,0);
-                if(isInserted==true){
-                    Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
-                    startActivity(dwoch);
-                }
-                else
-                {
-                    Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
-                }
-                break;
-            case 3:
-                while(ile==0){
-                    if(nazwaG1.length()!=0){
-                        gracz1=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=1;
-                    }
-                    if(nazwaG2.length()!=0){
-                        gracz1=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=1;
-                    }
-                    if(nazwaG3.length()!=0){
-                        gracz1=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=1;
-                    }
-                    if(nazwaG4.length()!=0){
-                        gracz1=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=1;
-                    }
-                }
-                while (ile == 1) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz2=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=2;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz2=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=2;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz2=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=2;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz2=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=2;
-                    }
-                }
-                while (ile == 2) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz3=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=3;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz3=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=3;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz3=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=3;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz3=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=3;
-                    }
-                }
-                boolean isInserted2 = myDb.insertData("",0,0,"",gracz1,0,gracz2,0,gracz3,0,"",0,0,0,0,0);
-                if(isInserted2==true){
-                    Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
-                    startActivity(trzech);
-                }
-                else
-                {
-                    Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
-                }
-                break;
-            case 4:
-                while(ile==0){
-                    if(nazwaG1.length()!=0){
-                        gracz1=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=1;
-                    }
-                    if(nazwaG2.length()!=0){
-                        gracz1=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=1;
-                    }
-                    if(nazwaG3.length()!=0){
-                        gracz1=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=1;
-                    }
-                    if(nazwaG4.length()!=0){
-                        gracz1=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=1;
-                    }
-                }
-                while (ile == 1) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz2=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=2;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz2=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=2;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz2=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=2;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz2=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=2;
-                    }
-                }
-                while (ile == 2) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz3=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=3;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz3=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=3;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz3=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=3;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz3=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=3;
-                    }
-                }
-                while (ile == 3) {
-                    if((nazwaG1.length()!=0)||(g1u==0)){
-                        gracz4=nazwaG1.getText().toString();
-                        g1u=1;
-                        ile=4;
-                    }
-                    if((nazwaG2.length()!=0)||(g2u==0)){
-                        gracz4=nazwaG2.getText().toString();
-                        g2u=1;
-                        ile=4;
-                    }
-                    if((nazwaG3.length()!=0)||(g3u==0)){
-                        gracz4=nazwaG3.getText().toString();
-                        g3u=1;
-                        ile=4;
-                    }
-                    if((nazwaG4.length()!=0)||(g4u==0)){
-                        gracz4=nazwaG4.getText().toString();
-                        g4u=1;
-                        ile=4;
-                    }
-                }
-                boolean isInserted3 = myDb.insertData("",0,0,"",gracz1,0,gracz2,0,gracz3,0,gracz4,0,0,0,0,0);
-                if(isInserted3==true){
-                    Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
-                    startActivity(czterech);
-                }
-                else
-                {
-                    Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
-                }
-                break;
-            default:
-            showMessage("Błąd", "Cholera wie jaki");
+    private void Start() {
+                nazwaGracza[0]=editG1.getText().toString();
+                nazwaGracza[1]=editG2.getText().toString();
+                nazwaGracza[2]=editG3.getText().toString();
+                nazwaGracza[3]=editG4.getText().toString();
+                //byte iluGraczy=LiczGraczy(nazwaGracza);
+                // byte iluGraczy =2;
+                byte iluGraczy = policzIch(nazwaGracza);
+                posortuj(nazwaGracza);
 
-        }
+                switch(iluGraczy){
+                    case 0:
+                        showMessage("Błąd", "Minimalna ilość graczy to: 2");
+                        break;
+                    case 1:
+                        showMessage("Błąd", "Minimalna ilość graczy to: 2");
+                        break;
+                    case 2:
+                        boolean isInserted = dane.insertData(iluGraczy, "", 1, "", "", nazwaGracza[0], 0, 0, nazwaGracza[1], 0, 0, nazwaGracza[2], 0, 0, nazwaGracza[3], 0, 0);
+                        if(isInserted){
+                            Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
+                            startActivity(dwoch);
+                        } else {
+                            Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case 3:
+                        boolean isInserted2 = dane.insertData(iluGraczy, "", 1, "", "", nazwaGracza[0], 0, 0, nazwaGracza[1], 0, 0, nazwaGracza[2], 0, 0, nazwaGracza[3], 0, 0);
+                        if(isInserted2){
+                            Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
+                            startActivity(trzech);
+                        } else {
+                            Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case 4:
+                        boolean isInserted3 = dane.insertData(iluGraczy, "", 1, "", "", nazwaGracza[0], 0, 0, nazwaGracza[1], 0, 0, nazwaGracza[2], 0, 0, nazwaGracza[3], 0, 0);
+                        if(isInserted3){
+                            Toast.makeText(NewGame.this, "Let the battle... BEGIN!", Toast.LENGTH_LONG).show();
+                            startActivity(czterech);
+                        } else {
+                            Toast.makeText(NewGame.this, "Coś nie działa...", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    default:
+                        showMessage("Błąd", "Cholera wie jaki");
+                        break;
+                }
+
+
+               // boolean isInserted = myDb.insertData("",0,0,"",gracz1,0,gracz2,0,"",0,"",0,0,0,0,0);
+
+
+
+
+
+
 
 
 
     }
+
+
+
+
+
 
     private void showMessage(String title, String message){
         AlertDialog.Builder builder  = new AlertDialog.Builder(this);
@@ -342,5 +157,60 @@ public class NewGame extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+
+
+
+
+    private static void sortuj(String[] gracze){
+        String temp;
+        for (int i=gracze.length - 1; i != 0; i--){
+            for(int j=gracze.length-1; j != 0; j--){
+                if(gracze[i].length()==0){
+                    temp = gracze[j-1];
+                    gracze[j-1]=gracze[j];
+                    gracze[j]=temp;
+                }
+            }
+        }
+
+    }
+
+    private byte LiczGraczy(String[] gracze) {
+        byte wynik=0;
+        for(int i=0; i<gracze.length; i++){
+            if(gracze[i].length()!=0){
+                wynik++;}
+
+        }
+        return wynik;
+
+    }
+
+    private static byte policzIch(String[] dupa){
+        byte dupa2=0;
+        for(int i=0; i<dupa.length; i++){
+            if(dupa[i].length()!=0){
+                dupa2++;
+            }
+        }
+        return dupa2;
+    }
+
+    private static void posortuj(String[] gracze){
+        for(int i=0; i<gracze.length; i++){
+            for(int j=0; j<gracze.length-1; j++){
+                String temp="";
+                if(gracze[j].length()==0){
+                    temp=gracze[j+1];
+                    gracze[j+1]=gracze[j];
+                    gracze[j]=temp;
+                }
+
+            }
+        }
     }
 }

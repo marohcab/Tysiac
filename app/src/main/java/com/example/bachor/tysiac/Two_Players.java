@@ -13,6 +13,7 @@ public class Two_Players extends AppCompatActivity {
 
     Button btnBomb_1, btnBomb_2, btnBack;
     TextView txtPoints_1, txtPoints_2, txtBomb_1, txtBomb_2,txtName_1,txtName_2,txtLicytacja,txtRunda;
+    DataBase baza = new DataBase(this);
 
     /*  Zmienne tymczasowe */
     String bomba = "Bomba zużyta";

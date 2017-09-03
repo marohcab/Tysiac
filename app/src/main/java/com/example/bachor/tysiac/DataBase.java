@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.IntegerRes;
 
 /**
  * Created by Bachor on 2017-09-01.
@@ -59,20 +60,23 @@ public class DataBase extends SQLiteOpenHelper {
 
 
      */
-
+    //SQLiteDatabase db;
+   // private Context mContext;
 
     public DataBase(Context context) {
         super(context, DATABASE_NAME, null, 1);
+       // mContext = context;
+       // db = this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists " + TABLE_CURRENT + "  (ID INTEGER PRIMARY KEY, GRA INTEGER)");
-        db.execSQL("create table if not exists " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, " +
+        db.execSQL("create table " + TABLE_CURRENT + "  (ID INTEGER PRIMARY KEY, GRA INTEGER)");
+        db.execSQL("create table " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY, Gracze INTEGER, Data TEXT, Runda INTEGER, Zaczyna TEXT, Rozdaje TEXT, " +
                 "Gracz1Nazwa TEXT, Gracz1Punkty INTEGER, Gracz1Bomba INTEGER, " +
                 "Gracz2Nazwa TEXT, Gracz2Punkty INTEGER, Gracz2Bomba INTEGER, " +
                 "Gracz3Nazwa TEXT, Gracz3Punkty INTEGER, Gracz3Bomba INTEGER, " +
-                "Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER, )");
+                "Gracz4Nazwa TEXT, Gracz4Punkty INTEGER, Gracz4Bomba INTEGER)");
     }
 
     @Override
@@ -82,17 +86,18 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     //Dodawanie nowych danych (wierszy)
-    public boolean insertData(int gracze, String data, int runda, String zaczyna, String rozdaje,
-                              String gracz1nazwa, int gracz1punkty, int gracz1bomba,
-                              String gracz2nazwa, int gracz2punkty, int gracz2bomba,
-                              String gracz3nazwa, int gracz3punkty, int gracz3bomba,
-                              String gracz4nazwa, int gracz4punkty, int gracz4bomba) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean insertData(int gracze, String data, int runda, String zaczyna, String rozdaje, String gracz1nazwa, int gracz1punkty, int gracz1bomba, String gracz2nazwa, int gracz2punkty, int gracz2bomba, String gracz3nazwa, int gracz3punkty, int gracz3bomba, String gracz4nazwa, int gracz4punkty, int gracz4bomba) {
+         SQLiteDatabase db = this.getWritableDatabase();
+        //SQLiteDatabase dupa = getWritableDatabase();
+        //tu przestaje dzialac
         ContentValues contentValues = new ContentValues();
-        int id;
-        Cursor getID;
-        getID = db.rawQuery("select count(ID) from TABLE", null);
-        id = getID.getInt(0) + 1;
+       // db = this.getWritableDatabase();
+
+
+
+        Cursor getID = db.rawQuery("select count(*) from " + TABLE_NAME, null);
+        getID.moveToFirst();
+        String id = String.valueOf(getID.getInt(0)+1);
 
         contentValues.put(ID, id);
         contentValues.put(GRACZE, gracze);
@@ -117,6 +122,8 @@ public class DataBase extends SQLiteOpenHelper {
         contentValues.put(GRACZ4_PUNKTY, gracz4punkty);
         contentValues.put(GRACZ4_BOMBA, gracz4bomba);
 
+        //to tez nie dziala
+        setCurrent(Integer.parseInt(id));
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1)
